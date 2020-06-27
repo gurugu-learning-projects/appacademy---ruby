@@ -1,5 +1,9 @@
+require "byebug"
+
 def prime?(num)
-  (1..num).each do |idx|
+  debugger
+
+  (2..num).each do |idx|
     if num % idx == 0
       return false
     end
