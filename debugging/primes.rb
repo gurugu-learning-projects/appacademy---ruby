@@ -16,10 +16,13 @@ def primes(num_primes)
   debugger
 
   ps = []
-  num = 1
+  num = 2
   while ps.count < num_primes
     ps << num if prime?(num)
+    num += 1
   end
+
+  ps
 end
 
 if __FILE__ == $PROGRAM_NAME
