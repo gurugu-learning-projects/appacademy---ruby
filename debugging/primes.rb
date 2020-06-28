@@ -1,7 +1,7 @@
 require "byebug"
 
 def prime?(num)
-  debugger
+  # debugger
 
   (2...num).each do |idx|
     if num % idx == 0
@@ -13,10 +13,12 @@ def prime?(num)
 end
 
 def primes(num_primes)
+  debugger
+
   ps = []
   num = 1
   while ps.count < num_primes
-    primes << num if prime?(num)
+    ps << num if prime?(num)
   end
 end
 
