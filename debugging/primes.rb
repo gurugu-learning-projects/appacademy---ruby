@@ -8,6 +8,8 @@ def prime?(num)
       return false
     end
   end
+
+  true
 end
 
 def primes(num_primes)
