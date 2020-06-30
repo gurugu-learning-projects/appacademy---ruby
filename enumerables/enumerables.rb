@@ -10,4 +10,16 @@ class Array
     
     return self
   end
+
+  def my_select(&prc)
+    selected = []
+
+    self.my_each do |ele|
+      if prc.call(ele)
+        selected << ele
+      end
+    end
+
+    selected
+  end
 end
