@@ -22,4 +22,16 @@ class Array
 
     selected
   end
+
+  def my_reject(&prc)
+    rejected = []
+
+    self.my_each do |ele|
+      if !prc.call(ele)
+        rejected << ele
+      end
+    end
+
+    rejected
+  end
 end
