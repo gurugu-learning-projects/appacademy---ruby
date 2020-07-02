@@ -4,7 +4,7 @@ class Array
     length = self.length
 
     while idx < length
-      self[idx] = prc.call(self[idx])
+      prc.call(self[idx])
       idx += 1
     end
     
