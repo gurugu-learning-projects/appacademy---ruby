@@ -54,4 +54,14 @@ class Array
 
     true
   end
+
+  def my_flatten
+    any_arrays = self.my_any? { |ele| ele.kind_of?(Array )}
+
+    if any_arrays
+      return "has arrays"
+    else
+      return self
+    end
+  end
 end
