@@ -1,3 +1,5 @@
+require "byebug"
+
 class Array
   def my_each(&prc)
     idx = 0
@@ -57,9 +59,20 @@ class Array
 
   def my_flatten
     any_arrays = self.my_any? { |ele| ele.kind_of?(Array )}
+    # debugger
 
     if any_arrays
-      return "has arrays"
+      current = []
+
+      self.my_each do |ele|
+        if ele.kind_of?(Array)
+          current.concat(ele.my_flatten)
+        else
+          current << ele
+        end
+      end
+
+      return current
     else
       return self
     end
