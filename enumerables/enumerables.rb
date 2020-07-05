@@ -98,4 +98,21 @@ class Array
 
     new_arr
   end
+
+  def my_rotate(count = 1)
+    rotated = []
+
+    self.each_with_index do |ele, idx|
+      difference = idx - count
+      new_idx = difference.abs >= self.length ? difference % self.length : difference
+
+      if new_idx < 0
+        new_idx = self.length + new_idx
+      end
+
+      rotated[new_idx] = ele
+    end
+
+    rotated
+  end
 end
