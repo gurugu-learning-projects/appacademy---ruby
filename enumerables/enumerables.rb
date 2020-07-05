@@ -77,4 +77,25 @@ class Array
       return self
     end
   end
+
+  def my_zip(*args)
+    new_arr = []
+
+    self.each_with_index do |ele, idx|
+      current = []
+      current << ele
+
+      args.my_each do |arr|
+        if arr[idx]
+          current << arr[idx]
+        else
+          current << nil
+        end
+      end
+
+      new_arr << current
+    end
+
+    new_arr
+  end
 end
