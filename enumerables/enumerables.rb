@@ -115,4 +115,18 @@ class Array
 
     rotated
   end
+
+  def my_join(separator = "")
+    joined_string = ""
+
+    self.each_with_index do |ele, idx|
+      joined_string += ele.to_s
+
+      if idx != self.length - 1
+        joined_string += separator.to_s
+      end
+    end
+
+    joined_string
+  end
 end
