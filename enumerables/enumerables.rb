@@ -129,4 +129,14 @@ class Array
 
     joined_string
   end
+
+  def my_reverse
+    reversed = []
+
+    self.my_each do |ele|
+      reversed.unshift(ele)
+    end
+
+    reversed
+  end
 end
