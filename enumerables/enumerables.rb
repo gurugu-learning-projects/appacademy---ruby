@@ -25,9 +25,7 @@ class Array
     rejected = []
 
     self.my_each do |ele|
-      if !prc.call(ele)
-        rejected << ele
-      end
+      rejected << item unless prc.call(item)
     end
 
     rejected
