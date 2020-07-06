@@ -2,15 +2,11 @@ require "byebug"
 
 class Array
   def my_each(&prc)
-    idx = 0
-    length = self.length
-
-    while idx < length
-      prc.call(self[idx])
-      idx += 1
+    self.length.times do |i|
+      prc.call(self[i])
     end
-    
-    return self
+
+    self
   end
 
   def my_select(&prc)
