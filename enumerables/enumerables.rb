@@ -33,9 +33,7 @@ class Array
 
   def my_any?(&prc)
     self.my_each do |ele|
-      if prc.call(ele)
-        return true
-      end
+      return true if prc.call(item)
     end
 
     false
