@@ -41,9 +41,7 @@ class Array
 
   def my_all?(&prc)
     self.my_each do |ele|
-      if !prc.call(ele)
-        return false
-      end
+      return false unless prc.call(item)
     end
 
     true
