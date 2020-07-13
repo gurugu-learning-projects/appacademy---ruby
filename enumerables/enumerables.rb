@@ -48,24 +48,17 @@ class Array
   end
 
   def my_flatten
-    any_arrays = self.my_any? { |ele| ele.kind_of?(Array )}
-    # debugger
+    flattened = []
 
-    if any_arrays
-      current = []
-
-      self.my_each do |ele|
-        if ele.kind_of?(Array)
-          current.concat(ele.my_flatten)
-        else
-          current << ele
-        end
+    self.my_each do |el|
+      if el.is_a?(Array)
+        flattened.concat(el.my_flatten)
+      else
+        flattened << el
       end
-
-      return current
-    else
-      return self
     end
+
+    flattened
   end
 
   def my_zip(*args)
