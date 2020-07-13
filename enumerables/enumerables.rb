@@ -83,20 +83,9 @@ class Array
   end
 
   def my_rotate(count = 1)
-    rotated = []
+    split_idx = positions % self.length
 
-    self.each_with_index do |ele, idx|
-      difference = idx - count
-      new_idx = difference.abs >= self.length ? difference % self.length : difference
-
-      if new_idx < 0
-        new_idx = self.length + new_idx
-      end
-
-      rotated[new_idx] = ele
-    end
-
-    rotated
+    self.drop(split_idx) + self.take(split_idx)
   end
 
   def my_join(separator = "")
