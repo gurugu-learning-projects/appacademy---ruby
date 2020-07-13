@@ -89,17 +89,14 @@ class Array
   end
 
   def my_join(separator = "")
-    joined_string = ""
+    join = ""
 
-    self.each_with_index do |ele, idx|
-      joined_string += ele.to_s
-
-      if idx != self.length - 1
-        joined_string += separator.to_s
-      end
+    self.length.times do |i|
+      join += self[i]
+      join += separator unless i == self.length - 1
     end
 
-    joined_string
+    join
   end
 
   def my_reverse
