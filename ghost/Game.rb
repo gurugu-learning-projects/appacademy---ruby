@@ -1,10 +1,10 @@
-class Game {
+class Game
   def initialize
-    this.players = players
-    this.fragment = ""
-    this.dictionary = dictionary
+    @players = "trst"
+    @fragment = ""
+    @dictionary = IO.readlines("dictionary.txt", chomp: true).map!(&:to_sym)
   end
 
   def play_round
   end
-}
+end
