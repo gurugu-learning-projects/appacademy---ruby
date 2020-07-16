@@ -1,6 +1,10 @@
+require_relative "Player.rb"
+
 class Game
-  def initialize
-    @players = "trst"
+  attr_accessor :players
+  
+  def initialize(player_1_name, player_2_name)
+    @players = [Player.new(player_1_name), Player.new(player_2_name)]
     @fragment = ""
     @dictionary = IO.readlines("dictionary.txt", chomp: true).map!(&:to_sym)
   end
