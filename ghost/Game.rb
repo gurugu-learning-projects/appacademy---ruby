@@ -18,6 +18,7 @@ class Game
   end
 
   def next_player!
+    @players.rotate!
   end
 
   def take_turn(player)
