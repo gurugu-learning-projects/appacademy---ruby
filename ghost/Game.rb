@@ -1,7 +1,7 @@
 require_relative "Player.rb"
 
 class Game
-  attr_accessor :players
+  attr_reader :players, :fragment
 
   def initialize(player_1_name, player_2_name)
     @players = [Player.new(player_1_name), Player.new(player_2_name)]
@@ -25,6 +25,17 @@ class Game
   end
 
   def valid_play?(string)
+    if string.kind_of?(String) && string.length == 1
+      @dictionary.each do |word|
+        regexp  = Regexp.new(@fragment + string)
+
+        if regexp === word
+          return true
+        end
+      end
+    end
+      
+    false
   end
 
   def play_round
