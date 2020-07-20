@@ -41,8 +41,7 @@ class Game
 
   def valid_play?(string)
     @dictionary.each do |word|
-      regexp  = Regexp.new(@fragment + string)
-
+      regexp  = Regexp.new("^#{@fragment}#{string}")
       if regexp === word
         return true
       end
@@ -63,7 +62,6 @@ class Game
       p "playing round..."
     end
 
-    p "moving along...q"
     self.next_player!
     self.play_round
   end
