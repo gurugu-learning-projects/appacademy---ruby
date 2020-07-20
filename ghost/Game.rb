@@ -28,15 +28,12 @@ class Game
     if self.valid_play?(guess)
       @fragment = @fragment + guess
       p "Good guess!"
-      p "Current string is: #{@fragment}"
-      p "-------------------------------------------------"
     else
-      player.alert_invalid_guess
       p "There is no such word in dictionary"
       p "Good luck on your next turn!"
-      p "Current string is: #{@fragment}"
-      p "-------------------------------------------------"
     end
+    
+    p "Current string is: #{@fragment}"
   end
 
   def valid_play?(string)
@@ -58,8 +55,6 @@ class Game
       p "Player #{previous_player.name} loses!"
       p "GAME OVER"
       return
-    else
-      p "playing round..."
     end
 
     self.next_player!

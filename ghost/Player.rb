@@ -10,6 +10,7 @@ class Player
   end
 
   def guess
+    p "-------------------------------------------------"
     p "Player #{@name}"
     p "Please enter a character:"
 
@@ -17,16 +18,9 @@ class Player
 
     if !self.is_valid_input?(input)
       p "Invalid input, please enter only one character..."
-      p "-------------------------------------------------"
       return self.guess
     end
 
     input
-  end
-
-  def alert_invalid_guess 
-    p "There is no such word in dictionary"
-    p "Good luck on your next turn!"
-    p "-------------------------------------------------"
   end
 end
