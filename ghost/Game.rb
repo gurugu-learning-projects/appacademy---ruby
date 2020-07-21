@@ -48,16 +48,24 @@ class Game
   end
 
   def play_round
-    self.take_turn(self.current_player)
+    # self.take_turn(self.current_player)
 
-    if @dictionary.include?(@fragment)
-      p "Player #{current_player.name} wins!"
-      p "Player #{previous_player.name} loses!"
-      p "GAME OVER"
-      return
+    # if @dictionary.include?(@fragment)
+    #   p "Player #{current_player.name} wins!"
+    #   p "Player #{previous_player.name} loses!"
+    #   p "GAME OVER"
+    #   return
+    # end
+
+    while !@dictionary.include?(@fragment)
+      self.take_turn(self.current_player)
+      self.next_player!
     end
 
-    self.next_player!
-    self.play_round
+    p "Player #{current_player.name} wins this round!"
+    p "Player #{previous_player.name} gets ghosted: #{}"
+
+    # self.next_player!
+    # self.play_round
   end
 end
