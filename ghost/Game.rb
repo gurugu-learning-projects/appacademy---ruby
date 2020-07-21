@@ -51,7 +51,7 @@ class Game
     false
   end
 
-  def add_loss
+  def count_losses
     @losses[self.previous_player.name] += 1
   end
 
@@ -73,7 +73,7 @@ class Game
     p "Player #{current_player.name} wins this round!"
     p "Player #{previous_player.name} gets ghosted: #{}"
 
-    self.add_loss
+    self.count_losses
     # self.next_player!
     # self.play_round
   end
