@@ -52,7 +52,7 @@ class Game
   end
 
   def add_loss
-    @losses[self.previous_player] += 1
+    @losses[self.previous_player.name] += 1
   end
 
   def play_round
