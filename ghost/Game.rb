@@ -55,26 +55,25 @@ class Game
     @losses[self.previous_player.name] += 1
   end
 
+  def show_score
+    ghost = "GHOST"
+
+    p "Current Rating:"
+
+    @losses.each do |player_name, losses|
+      p "#{player_name} --- #{ghost[0...losses]}"
+    end
+  end
+
   def play_round
-    # self.take_turn(self.current_player)
-
-    # if @dictionary.include?(@fragment)
-    #   p "Player #{current_player.name} wins!"
-    #   p "Player #{previous_player.name} loses!"
-    #   p "GAME OVER"
-    #   return
-    # end
-
     while !@dictionary.include?(@fragment)
       self.take_turn(self.current_player)
       self.next_player!
     end
 
     p "Player #{current_player.name} wins this round!"
-    p "Player #{previous_player.name} gets ghosted: #{}"
 
     self.count_losses
-    # self.next_player!
-    # self.play_round
+    self.show_score
   end
 end
