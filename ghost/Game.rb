@@ -6,7 +6,6 @@ class Game
   def initialize(player_1_name, player_2_name)
     @players = [Player.new(player_1_name), Player.new(player_2_name)]
     @fragment = ""
-    # @dictionary = IO.readlines("dictionary.txt", chomp: true).map!(&:to_sym)
     @dictionary = IO.readlines("dictionary.txt", chomp: true).to_set
   end
 
