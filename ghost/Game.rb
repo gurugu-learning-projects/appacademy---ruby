@@ -65,6 +65,16 @@ class Game
     end
   end
 
+  def player_is_ghost?
+    @losses.each_value do |losses|
+      if losses == 5
+        return true
+      end
+    end
+
+    false
+  end
+
   def play_round
     while !@dictionary.include?(@fragment)
       self.take_turn(self.current_player)
@@ -74,6 +84,15 @@ class Game
     p "Player #{current_player.name} wins this round!"
 
     self.count_losses
-    self.show_score
+  end
+
+  def run
+    while !self.player_is_ghost?
+      self.play_round
+      self.show_score
+      @fragment = ""
+    end
+
+
   end
 end
