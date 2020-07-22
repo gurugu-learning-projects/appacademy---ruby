@@ -77,6 +77,10 @@ class Game
     end
   end
 
+  def remove_winning_word
+    @dictionary.delete(@fragment)
+  end
+
   def play_round
     while !@dictionary.include?(@fragment)
       self.take_turn(self.current_player)
@@ -92,6 +96,7 @@ class Game
     while !self.player_is_ghost?
       self.play_round
       self.show_score
+      self.remove_winning_word
       @fragment = ""
     end
 
