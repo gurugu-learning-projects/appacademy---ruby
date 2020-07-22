@@ -75,6 +75,16 @@ class Game
     ghosts.each do |name, losses|
       p name if losses == 5
     end
+
+    ghosts.keys
+  end
+
+  def remove_ghost_players
+    ghosts = self.who_is_ghost
+
+    @players.select! do |player|
+      ghosts.include?(player.name)
+    end
   end
 
   def remove_winning_word
@@ -93,10 +103,11 @@ class Game
   end
 
   def run
-    while !self.player_is_ghost?
+    while @players.length > 1
       self.play_round
       self.show_score
       self.remove_winning_word
+      self.remove_ghost_players
       @fragment = ""
     end
 
