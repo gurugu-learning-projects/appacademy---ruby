@@ -70,11 +70,9 @@ class Game
   end
 
   def who_is_ghost
-    @losses.each do |player_name, losses|
-      if losses == 5
-        return player_name
-      end
-    end
+    ghosts = @losses.select {|k,v| v == 5}
+
+    p ghosts
   end
 
   def play_round
@@ -95,6 +93,6 @@ class Game
       @fragment = ""
     end
 
-
+    self.who_is_ghost
   end
 end
