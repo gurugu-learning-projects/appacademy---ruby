@@ -72,7 +72,9 @@ class Game
   def who_is_ghost
     ghosts = @losses.select {|k,v| v == 5}
 
-    p ghosts
+    ghosts.each do |name, losses|
+      p name if losses == 5
+    end
   end
 
   def play_round
