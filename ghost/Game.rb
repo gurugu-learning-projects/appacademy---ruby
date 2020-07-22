@@ -75,6 +75,14 @@ class Game
     false
   end
 
+  def who_is_ghost
+    @losses.each do |player_name, losses|
+      if losses == 5
+        return player_name
+      end
+    end
+  end
+
   def play_round
     while !@dictionary.include?(@fragment)
       self.take_turn(self.current_player)
