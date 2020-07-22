@@ -66,13 +66,7 @@ class Game
   end
 
   def player_is_ghost?
-    @losses.each_value do |losses|
-      if losses == 5
-        return true
-      end
-    end
-
-    false
+    @losses.has_value?(5)
   end
 
   def who_is_ghost
