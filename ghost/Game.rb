@@ -3,8 +3,8 @@ require_relative "Player.rb"
 class Game
   attr_reader :players, :fragment, :losses
 
-  def initialize(player_1_name, player_2_name)
-    @players = [Player.new(player_1_name), Player.new(player_2_name)]
+  def initialize(*player_names)
+    @players = player_names.map {|name| Player.new(name)}
     @fragment = ""
     @dictionary = IO.readlines("dictionary.txt", chomp: true).to_set
     @losses = {}
