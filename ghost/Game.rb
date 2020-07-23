@@ -70,13 +70,18 @@ class Game
   end
 
   def who_is_ghost
-    ghosts = @losses.select {|k,v| v == 5}
+    p "-------------------------------------------------"
+    p "GHOSTS:"
+    ghosts = @losses.select {|k,v| v == 5} 
 
     ghosts.each do |name, losses|
       p name if losses == 5
     end
 
     ghosts.keys
+    p "-------------------------------------------------"
+    p "WINNER:"
+    p @players[0].name
   end
 
   def remove_ghost_players
