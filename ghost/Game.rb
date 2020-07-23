@@ -31,10 +31,11 @@ class Game
 
     if self.valid_play?(guess)
       @fragment = @fragment + guess
-      p "Good guess!"
+      p "You got the letter right"
+      p "That's dangerous! Be careful next time"
     else
+      p "Phew!"
       p "There is no such word in dictionary"
-      p "Good luck on your next turn!"
     end
     
     p "Current string is: #{@fragment}"
@@ -52,7 +53,7 @@ class Game
   end
 
   def count_losses
-    @losses[self.previous_player.name] += 1
+    @losses[self.current_player.name] += 1
   end
 
   def show_score
@@ -70,15 +71,29 @@ class Game
   end
 
   def who_is_ghost
-    p "-------------------------------------------------"
-    p "GHOSTS:"
+    # p "-------------------------------------------------"
+    # p "GHOSTS:"
     ghosts = @losses.select {|k,v| v == 5} 
 
-    ghosts.each do |name, losses|
-      p name if losses == 5
-    end
+    # ghosts.each do |name, losses|
+    #   p name
+    # end
 
     ghosts.keys
+    # p "-------------------------------------------------"
+    # p "WINNER:"
+    # p @players[0].name
+  end
+
+  def final_score
+    ghosts = self.who_is_ghost
+    p "-------------------------------------------------"
+    p "GHOSTS:"
+
+    ghosts.each do |name, losses|
+      p name
+    end
+
     p "-------------------------------------------------"
     p "WINNER:"
     p @players[0].name
@@ -87,7 +102,7 @@ class Game
   def remove_ghost_players
     ghosts = self.who_is_ghost
 
-    @players.select! do |player|
+    @players.reject! do |player|
       ghosts.include?(player.name)
     end
   end
@@ -102,7 +117,7 @@ class Game
       self.next_player!
     end
 
-    p "Player #{current_player.name} wins this round!"
+    p "Player #{current_player.name} finished the word!"
 
     self.count_losses
   end
