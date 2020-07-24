@@ -69,18 +69,9 @@ class Game
   end
 
   def who_is_ghost
-    # p "-------------------------------------------------"
-    # p "GHOSTS:"
     ghosts = @losses.select {|k,v| v == MAX_LOSS_COUNT} 
 
-    # ghosts.each do |name, losses|
-    #   p name
-    # end
-
     ghosts.keys
-    # p "-------------------------------------------------"
-    # p "WINNER:"
-    # p @players[0].name
   end
 
   def final_score
