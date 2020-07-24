@@ -21,9 +21,9 @@ class Game
       @fragment = ""
     end
 
-    self.who_is_ghost
+    self.final_score
   end
-  
+
   def current_player
     @players.first
   end
