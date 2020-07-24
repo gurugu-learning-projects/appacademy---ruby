@@ -1,6 +1,8 @@
 require_relative "Player.rb"
 
 class Game
+  MAX_LOSS_COUNT = 5
+
   attr_reader :players, :fragment, :losses
 
   def initialize(*player_names)
@@ -63,13 +65,13 @@ class Game
   end
 
   def player_is_ghost?
-    @losses.has_value?(5)
+    @losses.has_value?(MAX_LOSS_COUNT)
   end
 
   def who_is_ghost
     # p "-------------------------------------------------"
     # p "GHOSTS:"
-    ghosts = @losses.select {|k,v| v == 5} 
+    ghosts = @losses.select {|k,v| v == MAX_LOSS_COUNT} 
 
     # ghosts.each do |name, losses|
     #   p name
