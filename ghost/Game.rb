@@ -7,11 +7,7 @@ class Game
     @players = player_names.map {|name| Player.new(name)}
     @fragment = ""
     @dictionary = IO.readlines("dictionary.txt", chomp: true).to_set
-    @losses = {}
-
-    @players.each do |player|
-      losses[player.name] = 0
-    end
+    @losses = Hash.new {|losses, player| losses[player] = 0}
   end
 
   def current_player
@@ -133,4 +129,15 @@ class Game
 
     self.who_is_ghost
   end
+end
+
+if $PROGRAM_NAME == __FILE__
+  game = Game.new(
+    Player.new("Gizmo"), 
+    Player.new("Breakfast"), 
+    Player.new("Toby"),
+    Player.new("Leonardo")
+    )
+
+  game.run
 end
