@@ -12,6 +12,18 @@ class Game
     @losses = Hash.new {|losses, player| losses[player] = 0}
   end
 
+  def run
+    while @players.length > 1
+      self.play_round
+      self.show_score
+      self.remove_winning_word
+      self.remove_ghost_players
+      @fragment = ""
+    end
+
+    self.who_is_ghost
+  end
+  
   def current_player
     @players.first
   end
@@ -109,18 +121,6 @@ class Game
     p "Player #{current_player.name} finished the word!"
 
     self.count_losses
-  end
-
-  def run
-    while @players.length > 1
-      self.play_round
-      self.show_score
-      self.remove_winning_word
-      self.remove_ghost_players
-      @fragment = ""
-    end
-
-    self.who_is_ghost
   end
 end
 
