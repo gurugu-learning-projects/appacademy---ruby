@@ -20,6 +20,27 @@ class Game
     self.final_score
   end
 
+  def play_round
+    @fragment = ""
+    self.welcome
+    self.show_score
+
+    until round_over?
+      self.take_turn
+      self.next_player!
+    end
+
+    p "Player #{current_player.name} finished the word!"
+
+    @losses[self.current_player.name] += 1
+    self.remove_winning_word
+    self.remove_ghost_players
+  end
+
+  def round_over?
+    @dictionary.include?(@fragment)
+  end
+
   def game_over?
     players.length < 2
   end
@@ -102,23 +123,6 @@ class Game
 
   def remove_winning_word
     @dictionary.delete(@fragment)
-  end
-
-  def play_round
-    @fragment = ""
-    self.welcome
-    self.show_score
-
-    while !@dictionary.include?(@fragment)
-      self.take_turn
-      self.next_player!
-    end
-
-    p "Player #{current_player.name} finished the word!"
-
-    @losses[self.current_player.name] += 1
-    self.remove_winning_word
-    self.remove_ghost_players
   end
 
   def welcome
