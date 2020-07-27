@@ -111,17 +111,7 @@ class Game
   end
 
   def final_score
-    ghosts = self.who_is_ghost
-    puts "-------------------------------------------------"
-    puts "GHOSTS:"
-
-    ghosts.each do |name, losses|
-      puts name
-    end
-
-    puts "-------------------------------------------------"
-    puts "WINNER:"
-    puts @players[0].name
+    puts "Player #{@players[0].name} wins!"
   end
 
   def remove_winning_word
