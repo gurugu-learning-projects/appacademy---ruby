@@ -22,7 +22,7 @@ class Game
 
   def play_round
     @fragment = ""
-    self.show_round_start_info
+    self.before_round
 
     until round_over?
       self.take_turn
@@ -36,7 +36,7 @@ class Game
     self.remove_ghost_players
   end
 
-  def show_round_start_info
+  def before_round
     system("clear") || system("cls")
     puts "Let's play a round of Ghost!"
 
