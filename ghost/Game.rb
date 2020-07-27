@@ -29,25 +29,35 @@ class Game
       self.next_player!
     end
 
-    puts "Player #{current_player.name} finished the word!"
-
-    @losses[self.current_player.name] += 1
-    self.remove_winning_word
-    self.remove_ghost_players
+    self.after_round
   end
 
   def before_round
     system("clear") || system("cls")
     puts "Let's play a round of Ghost!"
 
-    
-    puts "Current Rating:"
+    puts "Current rating:"
     
     ghost = "GHOST"
     @losses.each do |player_name, losses|
       puts "#{player_name} --- #{ghost[0...losses]}"
     end
+  end
 
+  def after_round
+    system("clear") || system("cls")
+    puts "#{current_player.name} spelled #{@fragment}."
+    puts "#{current_player.name} gets a letter!"
+    sleep(1)
+
+    if @losses[self.current_player.name] == MAX_LOSS_COUNT - 1
+      puts "#{current_player.name} has been eliminated!"
+      sleep(1)
+    end
+
+    @losses[self.current_player.name] += 1
+    self.remove_winning_word
+    self.remove_ghost_players
   end
 
   def round_over?
@@ -110,12 +120,12 @@ class Game
     false
   end
 
-  def final_score
-    puts "Player #{@players[0].name} wins!"
-  end
-
   def remove_winning_word
     @dictionary.delete(@fragment)
+  end
+
+  def final_score
+    puts "Player #{@players[0].name} wins!"
   end
 end
 
