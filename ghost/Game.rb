@@ -22,6 +22,7 @@ class Game
 
   def play_round
     @fragment = ""
+    self.show_round_start_info
     self.welcome
     self.show_score
 
@@ -30,11 +31,25 @@ class Game
       self.next_player!
     end
 
-    p "Player #{current_player.name} finished the word!"
+    puts "Player #{current_player.name} finished the word!"
 
     @losses[self.current_player.name] += 1
     self.remove_winning_word
     self.remove_ghost_players
+  end
+
+  def show_round_start_info
+    system("clear") || system("cls")
+    puts "Let's play a round of Ghost!"
+
+    
+    puts "Current Rating:"
+    
+    ghost = "GHOST"
+    @losses.each do |player_name, losses|
+      puts "#{player_name} --- #{ghost[0...losses]}"
+    end
+
   end
 
   def round_over?
@@ -76,14 +91,14 @@ class Game
 
     if self.valid_play?(guess)
       @fragment = @fragment + guess
-      p "You got the letter right"
-      p "That's dangerous! Be careful next time"
+      puts "You got the letter right"
+      puts "That's dangerous! Be careful next time"
     else
-      p "Phew!"
-      p "There is no such word in dictionary"
+      puts "Phew!"
+      puts "There is no such word in dictionary"
     end
     
-    p "Current string is: #{@fragment}"
+    puts "Current string is: #{@fragment}"
   end
 
   def valid_play?(string)
@@ -95,16 +110,6 @@ class Game
     end
       
     false
-  end
-
-  def show_score
-    ghost = "GHOST"
-
-    p "Current Rating:"
-
-    @losses.each do |player_name, losses|
-      p "#{player_name} --- #{ghost[0...losses]}"
-    end
   end
 
   def final_score
@@ -123,11 +128,6 @@ class Game
 
   def remove_winning_word
     @dictionary.delete(@fragment)
-  end
-
-  def welcome
-    system("clear") || system("cls")
-    puts "Let's play a round of Ghost!"
   end
 end
 
