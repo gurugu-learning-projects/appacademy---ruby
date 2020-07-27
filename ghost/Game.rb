@@ -13,12 +13,7 @@ class Game
   end
 
   def run
-    until game_over?
-      self.play_round
-      self.show_score
-      self.remove_winning_word
-      self.remove_ghost_players
-    end
+    self.play_round until game_over?
 
     self.final_score
   end
@@ -39,8 +34,8 @@ class Game
     @players.rotate!
   end
 
-  def take_turn(player)
-    guess = player.guess
+  def take_turn
+    guess = self.current_player.guess
 
     if self.valid_play?(guess)
       @fragment = @fragment + guess
@@ -118,15 +113,18 @@ class Game
   def play_round
     @fragment = ""
     self.welcome
+    self.show_score
 
     while !@dictionary.include?(@fragment)
-      self.take_turn(self.current_player)
+      self.take_turn
       self.next_player!
     end
 
     p "Player #{current_player.name} finished the word!"
 
     self.count_losses
+    self.remove_winning_word
+    self.remove_ghost_players
   end
 
   def welcome
