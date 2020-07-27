@@ -23,8 +23,6 @@ class Game
   def play_round
     @fragment = ""
     self.show_round_start_info
-    self.welcome
-    self.show_score
 
     until round_over?
       self.take_turn
@@ -114,16 +112,16 @@ class Game
 
   def final_score
     ghosts = self.who_is_ghost
-    p "-------------------------------------------------"
-    p "GHOSTS:"
+    puts "-------------------------------------------------"
+    puts "GHOSTS:"
 
     ghosts.each do |name, losses|
-      p name
+      puts name
     end
 
-    p "-------------------------------------------------"
-    p "WINNER:"
-    p @players[0].name
+    puts "-------------------------------------------------"
+    puts "WINNER:"
+    puts @players[0].name
   end
 
   def remove_winning_word

@@ -10,14 +10,14 @@ class Player
   end
 
   def guess
-    p "-------------------------------------------------"
-    p "Player #{@name}"
-    p "Please enter a character:"
+    puts "-------------------------------------------------"
+    puts "Player #{@name}"
+    puts "Please enter a character:"
 
     input = gets.chomp
 
     if !self.is_valid_input?(input)
-      p "Invalid input, please enter only one character..."
+      puts "Invalid input, please enter only one character..."
       return self.guess
     end
 
