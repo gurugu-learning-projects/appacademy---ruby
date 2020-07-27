@@ -36,6 +36,14 @@ class Game
     @players.rotate!
   end
 
+  def remove_ghost_players
+    ghosts = self.who_is_ghost
+
+    @players.reject! do |player|
+      ghosts.include?(player.name)
+    end
+  end
+  
   def take_turn
     guess = self.current_player.guess
 
@@ -76,10 +84,6 @@ class Game
     end
   end
 
-  def player_is_ghost?
-    @losses.has_value?(MAX_LOSS_COUNT)
-  end
-
   def who_is_ghost
     ghosts = @losses.select {|k,v| v == MAX_LOSS_COUNT} 
 
@@ -98,14 +102,6 @@ class Game
     p "-------------------------------------------------"
     p "WINNER:"
     p @players[0].name
-  end
-
-  def remove_ghost_players
-    ghosts = self.who_is_ghost
-
-    @players.reject! do |player|
-      ghosts.include?(player.name)
-    end
   end
 
   def remove_winning_word
