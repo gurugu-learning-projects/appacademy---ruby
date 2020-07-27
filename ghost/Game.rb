@@ -6,10 +6,12 @@ class Game
   attr_reader :players, :fragment, :losses
 
   def initialize(*player_names)
-    @players = player_names.map {|name| Player.new(name)}
+    @players = player_names.map {|name| Player.new(name.chomp)}
     @fragment = ""
     @dictionary = IO.readlines("dictionary.txt", chomp: true).to_set
-    @losses = Hash.new {|losses, player| losses[player] = 0}
+    @losses = {}
+
+    player_names.each {|player_name| @losses[player_name.chomp] = 0}
   end
 
   def run
