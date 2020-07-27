@@ -48,11 +48,11 @@ class Game
     system("clear") || system("cls")
     puts "#{current_player.name} spelled #{@fragment}."
     puts "#{current_player.name} gets a letter!"
-    sleep(1)
+    sleep(3)
 
     if @losses[self.current_player.name] == MAX_LOSS_COUNT - 1
       puts "#{current_player.name} has been eliminated!"
-      sleep(1)
+      sleep(3)
     end
 
     @losses[self.current_player.name] += 1
@@ -125,7 +125,7 @@ class Game
   end
 
   def final_score
-    puts "Player #{@players[0].name} wins!"
+    puts "#{@players[0].name} wins!"
   end
 end
 
