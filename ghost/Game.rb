@@ -44,6 +44,12 @@ class Game
     end
   end
   
+  def who_is_ghost
+    ghosts = @losses.select {|k,v| v == MAX_LOSS_COUNT} 
+
+    ghosts.keys
+  end
+
   def take_turn
     guess = self.current_player.guess
 
@@ -70,10 +76,6 @@ class Game
     false
   end
 
-  def count_losses
-    @losses[self.current_player.name] += 1
-  end
-
   def show_score
     ghost = "GHOST"
 
@@ -82,12 +84,6 @@ class Game
     @losses.each do |player_name, losses|
       p "#{player_name} --- #{ghost[0...losses]}"
     end
-  end
-
-  def who_is_ghost
-    ghosts = @losses.select {|k,v| v == MAX_LOSS_COUNT} 
-
-    ghosts.keys
   end
 
   def final_score
@@ -120,7 +116,7 @@ class Game
 
     p "Player #{current_player.name} finished the word!"
 
-    self.count_losses
+    @losses[self.current_player.name] += 1
     self.remove_winning_word
     self.remove_ghost_players
   end
