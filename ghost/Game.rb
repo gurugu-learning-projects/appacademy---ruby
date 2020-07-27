@@ -13,15 +13,18 @@ class Game
   end
 
   def run
-    while @players.length > 1
+    until game_over?
       self.play_round
       self.show_score
       self.remove_winning_word
       self.remove_ghost_players
-      @fragment = ""
     end
 
     self.final_score
+  end
+
+  def game_over?
+    players.length < 2
   end
 
   def current_player
@@ -113,6 +116,9 @@ class Game
   end
 
   def play_round
+    @fragment = ""
+    self.welcome
+
     while !@dictionary.include?(@fragment)
       self.take_turn(self.current_player)
       self.next_player!
@@ -121,6 +127,11 @@ class Game
     p "Player #{current_player.name} finished the word!"
 
     self.count_losses
+  end
+
+  def welcome
+    system("clear") || system("cls")
+    puts "Let's play a round of Ghost!"
   end
 end
 
