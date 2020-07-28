@@ -13,11 +13,15 @@ class Player
     puts "-------------------------------------------------"
     puts "Player #{@name}"
     puts "Please enter a character:"
+    puts "\n"
 
     input = gets.chomp
 
     if !self.is_valid_input?(input)
+      puts "\n"
       puts "Invalid input, please enter only one character..."
+      puts "\n"
+      sleep(1)
       return self.guess
     end
 

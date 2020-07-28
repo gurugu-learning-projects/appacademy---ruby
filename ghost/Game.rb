@@ -35,8 +35,9 @@ class Game
   def before_round
     system("clear") || system("cls")
     puts "Let's play a round of Ghost!"
-    sleep(3)
+    sleep(2)
 
+    puts "\n"
     puts "Current rating:"
     
     ghost = "GHOST"
@@ -98,6 +99,7 @@ class Game
   def take_turn
     guess = self.current_player.guess
 
+    puts "\n"
     if self.valid_play?(guess)
       @fragment = @fragment + guess
       puts "You got the letter right"
@@ -107,7 +109,10 @@ class Game
       puts "There is no such word in dictionary"
     end
     
+    puts "\n"
     puts "Current string is: #{@fragment}"
+    puts "\n"
+    sleep(1)
   end
 
   def valid_play?(string)
