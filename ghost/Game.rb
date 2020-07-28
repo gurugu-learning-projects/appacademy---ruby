@@ -35,6 +35,7 @@ class Game
   def before_round
     system("clear") || system("cls")
     puts "Let's play a round of Ghost!"
+    sleep(3)
 
     puts "Current rating:"
     
