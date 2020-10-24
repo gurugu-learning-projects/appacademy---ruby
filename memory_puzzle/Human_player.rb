@@ -6,8 +6,8 @@ class HumanPlayer
   end
 
   def get_input
-    prompt
-    parse(STDIN.gets.chomp)
+    self.prompt
+    self.parse(STDIN.gets.chomp)
   end
 
   def prompt
